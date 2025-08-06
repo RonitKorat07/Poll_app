@@ -1,0 +1,138 @@
+live voting 
+
+functionality : 
+
+user
+1. user login / signup 
+2. change profile data with password
+3. view list of all polls
+4. vote only one time polls
+5. after complete time show winner 
+6. live vote count display 
+
+admin 
+1. login 
+2. creat poll with candinates 
+3. admin can't vote 
+
+
+data model  : 
+user : name , email ,password ,number , role ,    "votes": [
+        {
+            "pollId": "poll001",  // User ne kis poll mein vote diya
+            "voted": true,        // User ne vote diya ya nahi (true/false)
+            "candidatesid" : "kfmk"
+            "votedAt": "2025-07-10T10:00:00Z"  // Kab vote diya tha
+        }, (like ek pole me ek hi vote de sake aisa kuch )   
+
+admin/poll : title , description , candinates [{
+    name, age , vote [user: userid , votedat : time jab bhi vote karega] , votecoutn (live vote count)
+}] , starttime , endtimes
+
+routes : 
+
+auth : 
+user/signup - post : create new user
+user/login - post : login user 
+
+userdata change : 
+user/profile : get : user all info 
+user/profile/changepassword : put : changepassword
+user/profile/changedata : put : changedata
+
+admin: 
+/poll/createPoll - post : create new poll 
+/poll/updatePoll/:pollId - put : update poll status(end poll) and declare winner
+/poll/deletePoll/:pollId - delete : delete poll 
+
+interface : 
+/poll/allPoll - get : all poll list 
+/poll/allPoll/:pollId : get : Get poll details with candidates, live vote count, etc.
+
+voting: 
+/poll/:pollId/vote	- post : user vote for candidates(req.body me candidate id pass)
+
+winner : 
+/poll/:pollId/result - get : winner
+
+
+
+
+{
+  "_id": ObjectId("user_id"),
+  "name": "Alice",
+  "email": "alice@example.com",
+  "password": "hashed_password",
+  "number": "1234567890",
+  "role": "user",   // ya "admin"
+  "votes": [
+    {
+      "pollId": ObjectId("poll001"),
+      "voted": true,
+      "candidateId": ObjectId("candidate001"),
+      "votedAt": ISODate("2025-07-10T10:00:00Z")
+    }
+  ]
+}
+
+
+
+
+{
+  "_id": ObjectId("poll001"),
+  "title": "Best Player 2025",
+  "description": "Vote for the best player this year.",
+  "startTime": ISODate("2025-07-01T00:00:00Z"),
+  "endTime": ISODate("2025-07-15T23:59:59Z"),
+  "candidates": [
+    {
+      "candidateId": ObjectId("candidate001"),
+      "name": "John",
+      "age": 30,
+      "votes": [
+        {
+          "userId": ObjectId("user001"),
+          "votedAt": ISODate("2025-07-10T10:00:00Z")
+        }
+      ],
+      "voteCount": 1
+    },
+    {
+      "candidateId": ObjectId("candidate002"),
+      "name": "Doe",
+      "age": 25,
+      "votes": [],
+      "voteCount": 0
+    }
+  ]
+}
+
+Code	Meaning	Description
+200 OK	         Success	The request was successful. Often used for GET or POST requests.
+201 Created      Resource Created	Used when a new resource is successfully created (e.g., new user).
+204 No Content  	Success (no content)	Request succeeded, but there's no content to send back (e.g., DELETE).
+400 Bad Request 	Client error	The request is malformed or invalid (e.g., missing required fields).
+401 Unauthorized	Authentication required	Client is not authenticated; token or login required.
+403 Forbidden   	Access denied	Authenticated, but not allowed to access the resource.
+404 Not Found   	Resource not found	The requested URL/resource doesn’t exist.
+409 Conflict	    Resource conflict	Conflict with current state (e.g., duplicate user).
+500 InternalError	Server crashed	A generic error when something fails on the server.
+502 Bad Gateway	  Server error via proxy	Upstream server sent an invalid response (e.g., with Nginx or load balancer).
+
+
+start me hoga  : normal page thodi info footer and navabar 
+
+sign in /sign up : user : user hoga to dashboard me only poll list
+                          poll pe click per additional details milegi 
+
+                   admin : admin ko add delete update ka dikhega with poll list
+                           poll click pe only view but not vote vala conditions hoga thik hai 
+
+ /home : sabko dikhega 
+ /poll : user 
+ /admin/poll : admin 
+ /poll/polldetails : user , admin    lekin user vote but admin not vote 
+ that's it or kuch any idea you                         
+
+
+

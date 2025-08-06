@@ -1,0 +1,56 @@
+# ============================
+# FRONTEND (Vite - React)
+# ============================
+
+# Logs
+frontend/logs
+frontend/*.log
+frontend/npm-debug.log*
+frontend/yarn-debug.log*
+frontend/yarn-error.log*
+frontend/pnpm-debug.log*
+frontend/lerna-debug.log*
+
+# Node modules
+frontend/node_modules/
+
+# Build output
+frontend/dist/
+frontend/dist-ssr/
+
+# Environment variables
+frontend/.env
+frontend/*.local
+
+# IDE/editor settings
+frontend/.vscode/*
+!frontend/.vscode/extensions.json
+frontend/.idea/
+frontend/.DS_Store
+frontend/*.suo
+frontend/*.ntvs*
+frontend/*.njsproj
+frontend/*.sln
+frontend/*.sw?
+
+# ============================
+# BACKEND (Node.js - Express)
+# ============================
+
+# Node modules
+backend/node_modules/
+
+# Logs
+backend/npm-debug.log*
+backend/yarn-debug.log*
+backend/yarn-error.log*
+
+# Build output (if using TypeScript or bundlers)
+backend/build/
+
+# Environment variables
+backend/.env
+
+# OS-specific
+backend/.DS_Store
+backend/Thumbs.db
