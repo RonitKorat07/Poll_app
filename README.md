@@ -27,5 +27,3 @@ A full-stack polling application that allows admins to create and manage polls, 
 - **Database:** MongoDB
 - **Authentication:** JWT
 
-git clone https://github.com/yourusername/yourrepo.git
-cd yourrepo
